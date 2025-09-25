@@ -1,0 +1,90 @@
+<resources>
+    <string name="app_name">Lanchonete App</string>
+    
+    <!-- Main Activity -->
+    <string name="dashboard">Dashboard</string>
+    <string name="today_sales">Vendas Hoje</string>
+    <string name="today_orders">Pedidos Hoje</string>
+    <string name="quick_actions">Ações Rápidas</string>
+    <string name="sales">Vendas</string>
+    <string name="inventory">Estoque</string>
+    <string name="products">Produtos</string>
+    <string name="reports">Relatórios</string>
+    
+    <!-- Sales -->
+    <string name="new_sale">Nova Venda</string>
+    <string name="sale_history">Histórico de Vendas</string>
+    <string name="customer_name">Nome do Cliente</string>
+    <string name="customer_phone">Telefone</string>
+    <string name="payment_method">Forma de Pagamento</string>
+    <string name="total">Total</string>
+    <string name="discount">Desconto</string>
+    <string name="final_amount">Valor Final</string>
+    <string name="add_item">Adicionar Item</string>
+    <string name="complete_sale">Finalizar Venda</string>
+    
+    <!-- Payment Methods -->
+    <string name="cash">Dinheiro</string>
+    <string name="credit_card">Cartão de Crédito</string>
+    <string name="debit_card">Cartão de Débito</string>
+    <string name="pix">PIX</string>
+    <string name="meal_voucher">Vale Refeição</string>
+    
+    <!-- Inventory -->
+    <string name="current_stock">Estoque Atual</string>
+    <string name="min_stock">Estoque Mínimo</string>
+    <string name="max_stock">Estoque Máximo</string>
+    <string name="low_stock">Estoque Baixo</string>
+    <string name="out_of_stock">Sem Estoque</string>
+    <string name="restock">Repor Estoque</string>
+    <string name="stock_movements">Movimentações</string>
+    
+    <!-- Products -->
+    <string name="product_name">Nome do Produto</string>
+    <string name="product_description">Descrição</string>
+    <string name="product_price">Preço</string>
+    <string name="product_cost">Custo</string>
+    <string name="product_category">Categoria</string>
+    <string name="product_barcode">Código de Barras</string>
+    <string name="add_product">Adicionar Produto</string>
+    <string name="edit_product">Editar Produto</string>
+    <string name="delete_product">Excluir Produto</string>
+    
+    <!-- Reports -->
+    <string name="daily_report">Relatório Diário</string>
+    <string name="weekly_report">Relatório Semanal</string>
+    <string name="monthly_report">Relatório Mensal</string>
+    <string name="sales_report">Relatório de Vendas</string>
+    <string name="inventory_report">Relatório de Estoque</string>
+    <string name="top_products">Produtos Mais Vendidos</string>
+    
+    <!-- Common -->
+    <string name="save">Salvar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="delete">Excluir</string>
+    <string name="edit">Editar</string>
+    <string name="search">Pesquisar</string>
+    <string name="filter">Filtrar</string>
+    <string name="quantity">Quantidade</string>
+    <string name="price">Preço</string>
+    <string name="date">Data</string>
+    <string name="time">Hora</string>
+    <string name="notes">Observações</string>
+    
+    <!-- Messages -->
+    <string name="sale_completed">Venda finalizada com sucesso!</string>
+    <string name="product_added">Produto adicionado com sucesso!</string>
+    <string name="product_updated">Produto atualizado com sucesso!</string>
+    <string name="product_deleted">Produto excluído com sucesso!</string>
+    <string name="stock_updated">Estoque atualizado com sucesso!</string>
+    <string name="confirm_delete">Tem certeza que deseja excluir?</string>
+    <string name="error_occurred">Ocorreu um erro. Tente novamente.</string>
+    <string name="no_items_found">Nenhum item encontrado.</string>
+    
+    <!-- Settings -->
+    <string name="settings">Configurações</string>
+    <string name="help">Ajuda</string>
+    <string name="about">Sobre</string>
+    <string name="version">Versão</string>
+    
+</resources>
