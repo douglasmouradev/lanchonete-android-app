@@ -85,7 +85,7 @@ class InventoryViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
     
-    fun adjustStock(productId: String, newStock: Int, responsible: String) {
+    fun adjustStock(productId: String, newStock: Int, @Suppress("UNUSED_PARAMETER") responsible: String) {
         viewModelScope.launch {
             try {
                 repository.updateStock(productId, newStock)

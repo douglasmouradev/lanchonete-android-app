@@ -36,6 +36,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun loadDashboardData() {
         viewModelScope.launch {
             try {
+                // Set default values first
+                _todaySales.value = 0.0
+                _todayOrders.value = 0
+                _lowStockCount.value = 0
+                _outOfStockCount.value = 0
+                
                 val today = Date()
                 
                 // Load today's sales
@@ -56,6 +62,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     _outOfStockCount.value = items.size
                 }
             } catch (e: Exception) {
+                e.printStackTrace()
                 // Set default values if database is not ready
                 _todaySales.value = 0.0
                 _todayOrders.value = 0

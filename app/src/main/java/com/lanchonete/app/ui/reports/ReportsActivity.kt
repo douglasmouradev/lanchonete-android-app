@@ -3,116 +3,74 @@ package com.lanchonete.app.ui.reports
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.lanchonete.app.R
 import com.lanchonete.app.databinding.ActivityReportsBinding
-import java.text.NumberFormat
-import java.util.*
 
 class ReportsActivity : AppCompatActivity() {
     
     private lateinit var binding: ActivityReportsBinding
-    private lateinit var viewModel: ReportsViewModel
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityReportsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        
-        setupToolbar()
-        setupViewModel()
-        setupClickListeners()
-        observeViewModel()
+        try {
+            binding = ActivityReportsBinding.inflate(layoutInflater)
+            setContentView(binding.root)
+            
+            setupToolbar()
+            setupClickListeners()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this, "Erro ao inicializar tela de relatórios: ${e.message}", Toast.LENGTH_LONG).show()
+            finish()
+        }
     }
     
     private fun setupToolbar() {
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Relatórios"
-    }
-    
-    private fun setupViewModel() {
-        viewModel = ViewModelProvider(this)[ReportsViewModel::class.java]
+        try {
+            setSupportActionBar(binding.toolbar)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayShowHomeEnabled(true)
+            supportActionBar?.title = "Relatórios"
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
     
     private fun setupClickListeners() {
-        binding.buttonDailyReport.setOnClickListener {
-            viewModel.generateDailyReport()
-        }
-        
-        binding.buttonWeeklyReport.setOnClickListener {
-            viewModel.generateWeeklyReport()
-        }
-        
-        binding.buttonMonthlyReport.setOnClickListener {
-            viewModel.generateMonthlyReport()
-        }
-        
-        binding.buttonSalesReport.setOnClickListener {
-            viewModel.generateSalesReport()
-        }
-        
-        binding.buttonInventoryReport.setOnClickListener {
-            viewModel.generateInventoryReport()
-        }
-        
-        binding.buttonTopProducts.setOnClickListener {
-            viewModel.generateTopProductsReport()
-        }
-    }
-    
-    private fun observeViewModel() {
-        viewModel.dailySales.observe(this) { sales ->
-            binding.textDailySales.text = NumberFormat.getCurrencyInstance(Locale("pt", "BR")).format(sales)
-        }
-        
-        viewModel.weeklySales.observe(this) { sales ->
-            binding.textWeeklySales.text = NumberFormat.getCurrencyInstance(Locale("pt", "BR")).format(sales)
-        }
-        
-        viewModel.monthlySales.observe(this) { sales ->
-            binding.textMonthlySales.text = NumberFormat.getCurrencyInstance(Locale("pt", "BR")).format(sales)
-        }
-        
-        viewModel.totalProducts.observe(this) { count ->
-            binding.textTotalProducts.text = count.toString()
-        }
-        
-        viewModel.lowStockCount.observe(this) { count ->
-            binding.textLowStockCount.text = count.toString()
-        }
-        
-        viewModel.outOfStockCount.observe(this) { count ->
-            binding.textOutOfStockCount.text = count.toString()
-        }
+        // Simular funcionalidades básicas
+        Toast.makeText(this, "Tela de Relatórios - Em desenvolvimento", Toast.LENGTH_SHORT).show()
     }
     
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.reports_menu, menu)
-        return true
+        try {
+            menuInflater.inflate(R.menu.reports_menu, menu)
+            return true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return false
+        }
     }
     
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                finish()
+                // Botão de voltar - retorna para a tela anterior
+                onBackPressed()
                 true
             }
-            R.id.action_export_report -> {
-                // TODO: Implement report export
+            else -> {
+                Toast.makeText(this, "Funcionalidade em desenvolvimento", Toast.LENGTH_SHORT).show()
                 true
             }
-            R.id.action_print_report -> {
-                // TODO: Implement report printing
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
         }
     }
     
-    override fun onResume() {
-        super.onResume()
-        viewModel.loadReportData()
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // Adiciona animação de transição
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
     }
 }

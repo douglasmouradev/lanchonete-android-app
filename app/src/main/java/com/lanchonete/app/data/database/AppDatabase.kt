@@ -37,7 +37,9 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "lanchonete_database"
-                ).build()
+                )
+                .fallbackToDestructiveMigration() // Allow database recreation on schema changes
+                .build()
                 INSTANCE = instance
                 instance
             }
