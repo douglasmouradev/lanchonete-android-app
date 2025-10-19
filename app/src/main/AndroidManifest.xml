@@ -41,6 +41,10 @@
         <activity
             android:name=".ui.products.ProductManagementActivity"
             android:exported="false" />
+            
+        <activity
+            android:name=".ui.payment.PaymentActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

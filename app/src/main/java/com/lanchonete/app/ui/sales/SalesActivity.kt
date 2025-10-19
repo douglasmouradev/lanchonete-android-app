@@ -1,12 +1,17 @@
 package com.lanchonete.app.ui.sales
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.lanchonete.app.R
+import com.lanchonete.app.data.model.PaymentRequest
 import com.lanchonete.app.databinding.ActivitySalesBinding
+import com.lanchonete.app.ui.payment.PaymentActivity
+import java.util.*
 
 class SalesActivity : AppCompatActivity() {
     
@@ -39,8 +44,66 @@ class SalesActivity : AppCompatActivity() {
     }
     
     private fun setupClickListeners() {
-        // Simular funcionalidades básicas
-        Toast.makeText(this, "Tela de Vendas - Em desenvolvimento", Toast.LENGTH_SHORT).show()
+        // Simular carrinho com alguns produtos
+        binding.buttonProcessPayment.setOnClickListener {
+            processPayment()
+        }
+        
+        binding.buttonAddProduct.setOnClickListener {
+            addSampleProduct()
+        }
+        
+        binding.buttonClearCart.setOnClickListener {
+            clearCart()
+        }
+    }
+    
+    private fun addSampleProduct() {
+        // Adicionar produto de exemplo
+        Toast.makeText(this, "Produto adicionado ao carrinho", Toast.LENGTH_SHORT).show()
+        updateCartTotal()
+    }
+    
+    private fun clearCart() {
+        Toast.makeText(this, "Carrinho limpo", Toast.LENGTH_SHORT).show()
+        updateCartTotal()
+    }
+    
+    private fun updateCartTotal() {
+        // Simular total do carrinho
+        val total = 25.50
+        binding.textCartTotal.text = "Total: R$ ${String.format("%.2f", total)}"
+    }
+    
+    private fun processPayment() {
+        val total = 25.50 // Valor simulado
+        
+        val paymentRequest = PaymentRequest(
+            amount = total,
+            description = "Venda Lanchonete - ${Date()}",
+            customerName = "Cliente",
+            orderId = "ORD_${System.currentTimeMillis()}"
+        )
+        
+        val intent = Intent(this, PaymentActivity::class.java).apply {
+            putExtra(PaymentActivity.EXTRA_PAYMENT_REQUEST, paymentRequest)
+        }
+        
+        paymentLauncher.launch(intent)
+    }
+    
+    private val paymentLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        when (result.resultCode) {
+            PaymentActivity.RESULT_PAYMENT_SUCCESS -> {
+                Toast.makeText(this, "Pagamento aprovado! Venda finalizada.", Toast.LENGTH_LONG).show()
+                clearCart()
+            }
+            PaymentActivity.RESULT_PAYMENT_FAILED -> {
+                Toast.makeText(this, "Pagamento cancelado ou falhou", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
     
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
