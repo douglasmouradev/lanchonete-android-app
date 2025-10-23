@@ -57,10 +57,25 @@ class ProductManagementViewModel(application: Application) : AndroidViewModel(ap
         }
     }
     
-    fun saveProduct(product: Product) {
+    fun saveProduct(product: Product, initialStock: Int = 0) {
         viewModelScope.launch {
             try {
                 repository.insertProduct(product)
+                
+                // Create initial inventory item if stock is provided
+                if (initialStock > 0) {
+                    val inventoryItem = com.lanchonete.app.data.model.InventoryItem(
+                        id = java.util.UUID.randomUUID().toString(),
+                        productId = product.id,
+                        productName = product.name,
+                        currentStock = initialStock,
+                        minStock = 0,
+                        maxStock = 1000,
+                        lastUpdated = java.util.Date()
+                    )
+                    repository.insertInventoryItem(inventoryItem)
+                }
+                
                 _productSaved.value = true
                 loadAllProducts() // Refresh list
             } catch (e: Exception) {

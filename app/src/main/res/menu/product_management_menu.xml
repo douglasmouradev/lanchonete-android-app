@@ -3,15 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_import_products"
+        android:id="@+id/action_refresh"
+        android:title="Atualizar"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_import"
         android:title="Importar"
         android:icon="@drawable/ic_import"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_export_products"
+        android:id="@+id/action_export"
         android:title="Exportar"
         android:icon="@drawable/ic_export"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_help"
+        android:title="Ajuda"
+        android:icon="@drawable/ic_help"
         app:showAsAction="never" />
 
 </menu>
